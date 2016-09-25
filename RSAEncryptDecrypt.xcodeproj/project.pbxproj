@@ -17,6 +17,9 @@
 		62393F621D97B88400542D37 /* ZWRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 62393F611D97B88400542D37 /* ZWRSA.m */; };
 		62393F651D97C2A800542D37 /* cert.der in Resources */ = {isa = PBXBuildFile; fileRef = 62393F631D97B8C900542D37 /* cert.der */; };
 		62393F661D97C2A800542D37 /* pkcs.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 62393F641D97B8C900542D37 /* pkcs.p12 */; };
+		62393F691D97C67B00542D37 /* rsa_private_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 62393F671D97C67B00542D37 /* rsa_private_key.pem */; };
+		62393F6A1D97C67B00542D37 /* rsa_public_key.pem in Resources */ = {isa = PBXBuildFile; fileRef = 62393F681D97C67B00542D37 /* rsa_public_key.pem */; };
+		CB7BE47A52A418FD9CCF8E42 /* libPods-RSAEncryptDecrypt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFC784EE19E150F960FC69C /* libPods-RSAEncryptDecrypt.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +39,11 @@
 		62393F611D97B88400542D37 /* ZWRSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWRSA.m; sourceTree = "<group>"; };
 		62393F631D97B8C900542D37 /* cert.der */ = {isa = PBXFileReference; lastKnownFileType = file; path = cert.der; sourceTree = "<group>"; };
 		62393F641D97B8C900542D37 /* pkcs.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pkcs.p12; sourceTree = "<group>"; };
+		62393F671D97C67B00542D37 /* rsa_private_key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rsa_private_key.pem; sourceTree = "<group>"; };
+		62393F681D97C67B00542D37 /* rsa_public_key.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rsa_public_key.pem; sourceTree = "<group>"; };
+		6AB9C29DFBB445E07A9A1D08 /* Pods-RSAEncryptDecrypt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSAEncryptDecrypt.release.xcconfig"; path = "Pods/Target Support Files/Pods-RSAEncryptDecrypt/Pods-RSAEncryptDecrypt.release.xcconfig"; sourceTree = "<group>"; };
+		7EFC784EE19E150F960FC69C /* libPods-RSAEncryptDecrypt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RSAEncryptDecrypt.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECC3E5E3D648017618CFA2DF /* Pods-RSAEncryptDecrypt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSAEncryptDecrypt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RSAEncryptDecrypt/Pods-RSAEncryptDecrypt.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7BE47A52A418FD9CCF8E42 /* libPods-RSAEncryptDecrypt.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +63,8 @@
 			children = (
 				62393F321D97B58700542D37 /* RSAEncryptDecrypt */,
 				62393F311D97B58700542D37 /* Products */,
+				75B4073CD37CC94083E95974 /* Pods */,
+				75B061E6B4B7EBBDAFF252D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +104,8 @@
 		62393F5C1D97B84700542D37 /* RSAFile */ = {
 			isa = PBXGroup;
 			children = (
+				62393F671D97C67B00542D37 /* rsa_private_key.pem */,
+				62393F681D97C67B00542D37 /* rsa_public_key.pem */,
 				62393F631D97B8C900542D37 /* cert.der */,
 				62393F641D97B8C900542D37 /* pkcs.p12 */,
 				62393F5D1D97B87500542D37 /* ZWOpenSSLRSA.h */,
@@ -103,6 +116,23 @@
 			path = RSAFile;
 			sourceTree = "<group>";
 		};
+		75B061E6B4B7EBBDAFF252D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7EFC784EE19E150F960FC69C /* libPods-RSAEncryptDecrypt.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75B4073CD37CC94083E95974 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECC3E5E3D648017618CFA2DF /* Pods-RSAEncryptDecrypt.debug.xcconfig */,
+				6AB9C29DFBB445E07A9A1D08 /* Pods-RSAEncryptDecrypt.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -110,9 +140,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 62393F471D97B58700542D37 /* Build configuration list for PBXNativeTarget "RSAEncryptDecrypt" */;
 			buildPhases = (
+				DD52871F58124F30B3229A46 /* [CP] Check Pods Manifest.lock */,
 				62393F2C1D97B58700542D37 /* Sources */,
 				62393F2D1D97B58700542D37 /* Frameworks */,
 				62393F2E1D97B58700542D37 /* Resources */,
+				12D5E4B6AA5F3300D3C1C4BB /* [CP] Embed Pods Frameworks */,
+				B76E282CF3C36C6D75BE01D7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -162,14 +195,64 @@
 			buildActionMask = 2147483647;
 			files = (
 				62393F651D97C2A800542D37 /* cert.der in Resources */,
+				62393F691D97C67B00542D37 /* rsa_private_key.pem in Resources */,
 				62393F661D97C2A800542D37 /* pkcs.p12 in Resources */,
 				62393F431D97B58700542D37 /* LaunchScreen.storyboard in Resources */,
 				62393F401D97B58700542D37 /* Assets.xcassets in Resources */,
+				62393F6A1D97C67B00542D37 /* rsa_public_key.pem in Resources */,
 				62393F3E1D97B58700542D37 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		12D5E4B6AA5F3300D3C1C4BB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSAEncryptDecrypt/Pods-RSAEncryptDecrypt-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B76E282CF3C36C6D75BE01D7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RSAEncryptDecrypt/Pods-RSAEncryptDecrypt-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD52871F58124F30B3229A46 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		62393F2C1D97B58700542D37 /* Sources */ = {
@@ -290,6 +373,7 @@
 		};
 		62393F481D97B58700542D37 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECC3E5E3D648017618CFA2DF /* Pods-RSAEncryptDecrypt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RSAEncryptDecrypt/Info.plist;
@@ -301,6 +385,7 @@
 		};
 		62393F491D97B58700542D37 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AB9C29DFBB445E07A9A1D08 /* Pods-RSAEncryptDecrypt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = RSAEncryptDecrypt/Info.plist;
@@ -329,6 +414,7 @@
 				62393F491D97B58700542D37 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

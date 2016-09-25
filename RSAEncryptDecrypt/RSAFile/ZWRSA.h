@@ -9,7 +9,7 @@
 
 
 /*
- * 有证书的RSA 例如DER格式的文件，或者P12文件
+ * 使用系统加解密方法，即有证书的RSA。 例如DER格式的文件公钥，或者P12文件私钥。
  */
 
 #import <Foundation/Foundation.h>
@@ -23,6 +23,8 @@
 
 @property(nonatomic, readonly) SecKeyRef privateKey;
 @property(nonatomic, readonly) SecKeyRef publicKey;
+
+
 
 + (ZWRSA *)sharedInstance;
 

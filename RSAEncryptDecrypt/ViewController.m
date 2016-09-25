@@ -34,22 +34,46 @@
 }
 
 - (IBAction)encryptB:(UIButton *)sender {
+
     
+    [self opensslRSALoadKey];
+
+    
+    
+    
+    ZWOpenSSLRSA *rsa = [ZWOpenSSLRSA sharedInstance];
+
+    NSString *str1 = [rsa encryptWithPublicKeyUsingPadding:RSA_PADDING_TYPE_PKCS1 plainString:_TextFiledB.text];
+    NSString *str2 = [rsa encryptWithPrivateKeyUsingPadding:RSA_PADDING_TYPE_PKCS1 plainString:_TextFiledB.text];
+    _labelB.text = str1;
+    NSLog(@"encrypt-%@,%@",str1,str2);
+
 }
 
 - (IBAction)decryptB:(UIButton *)sender {
-    
+    [self opensslRSALoadKey];
+
+    ZWOpenSSLRSA *rsa = [ZWOpenSSLRSA sharedInstance];
+    NSString *str1 = [rsa decryptWithPrivateKeyUsingPadding:RSA_PADDING_TYPE_PKCS1 cipherString:_labelB.text];
+//    NSString *str2 = [rsa decryptWithPublicKeyUsingPadding:RSA_PADDING_TYPE_PKCS1 cipherString:_labelB.text];
+    _labelB.text = str1;
 }
 
 
 -(void)rsaLoadKey{
     NSString *publicKeyPath = [[NSBundle mainBundle] pathForResource:@"cert" ofType:@"der"];
-    [[ZWRSA sharedInstance] loadPublicKeyFromCertificateFile:publicKeyPath];
     NSString *privateKeyPath = [[NSBundle mainBundle] pathForResource:@"pkcs" ofType:@"p12"];
+
+    [[ZWRSA sharedInstance] loadPublicKeyFromCertificateFile:publicKeyPath];
     [[ZWRSA sharedInstance] loadEveryThingFromPKCS12File:privateKeyPath passphrase:@"123456"];
-    
     
 }
 
+-(void)opensslRSALoadKey{
+    ZWOpenSSLRSA *rsa = [ZWOpenSSLRSA sharedInstance];
+    [rsa importRSAPublicKeyPEMFilePath:[[NSBundle mainBundle] pathForResource:@"rsa_public_key" ofType:@"pem"]];
+    [rsa importRSAPrivateKeyPEMFilePath:[[NSBundle mainBundle] pathForResource:@"rsa_private_key" ofType:@"pem"]];
+    
+}
 
 @end
