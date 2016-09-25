@@ -164,11 +164,12 @@ typedef NS_ENUM(int, RSA_SIGN_DIGEST_TYPE) {
  *  @return sign data
  */
 - (NSData *)signWithPrivateKeyUsingDigest:(RSA_SIGN_DIGEST_TYPE)type plainData:(NSData *)plainData;
-
+- (NSString *)signWithPrivateKeyUsingDigest:(RSA_SIGN_DIGEST_TYPE)type plainString:(NSString *)plainString;
 /**
  *  verify the sign is ok or not using public key.
  */
 - (BOOL)verifyWithPublicKeyUsingDigest:(RSA_SIGN_DIGEST_TYPE)type signData:(NSData *)signData plainData:(NSData *)plainData;
+- (BOOL)verifyWithPublicKeyUsingDigest:(RSA_SIGN_DIGEST_TYPE)type signString:(NSString *)signString plainString:(NSString *)plainString;
 
 
 @end

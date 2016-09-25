@@ -205,6 +205,7 @@
 #pragma mark - 加解密
 - (NSData *)encryptWithPublicKeyUsingPadding:(RSA_PADDING_TYPE)padding plainData:(NSData *)plainData
 {
+    
     NSAssert(_rsaPublic != NULL, @"You should import public key first");
     
     if ([plainData length])
@@ -353,7 +354,12 @@
     free(sign);
     return nil;
 }
-
+- (NSString *)signWithPrivateKeyUsingDigest:(RSA_SIGN_DIGEST_TYPE)type plainString:(NSString *)plainString{
+    NSData *data =[self signWithPrivateKeyUsingDigest:type plainData:[plainString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *base64String = [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return base64String;
+    
+}
 - (BOOL)verifyWithPublicKeyUsingDigest:(RSA_SIGN_DIGEST_TYPE)type signData:(NSData *)signData plainData:(NSData *)plainData
 {
     NSAssert(_rsaPublic != NULL, @"You should import public key first");
@@ -365,7 +371,11 @@
     }
     return NO;
 }
-
+- (BOOL)verifyWithPublicKeyUsingDigest:(RSA_SIGN_DIGEST_TYPE)type signString:(NSString *)signString plainString:(NSString *)plainString{
+    NSData *signData = [[NSData alloc] initWithBase64EncodedString:signString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSData *plainData = [plainString dataUsingEncoding:NSUTF8StringEncoding];
+    return [self verifyWithPublicKeyUsingDigest:type signData:signData plainData:plainData];
+}
 
 #pragma mark - private
 - (NSData *)digestDataOfData:(NSData *)plainData withType:(RSA_SIGN_DIGEST_TYPE)type

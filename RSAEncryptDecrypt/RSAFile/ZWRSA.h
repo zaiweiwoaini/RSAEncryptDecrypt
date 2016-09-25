@@ -12,6 +12,25 @@
  * 使用系统加解密方法，即有证书的RSA。 例如DER格式的文件公钥，或者P12文件私钥。
  */
 
+
+
+
+/*
+ 用法示例：
+ ZWRSA *rsa = [ZWRSA sharedInstance];
+ [rsa loadPublicKeyFromCertificateFile:[[NSBundle mainBundle]
+ pathForResource:@"cert" ofType:@"der"]];
+ [rsa loadEveryThingFromPKCS12File:[[NSBundle mainBundle]
+ pathForResource:@"pkcs" ofType:@"p12"] passphrase:@"123456"];
+ 
+ NSString *str111 = [rsa encryptStringWithKeyType:HCRSATypeDefault
+ sourceString:@"qwerty"];//加密
+ NSString *str222 = [rsa decryptStringWithKeyType:HCRSATypeDefault
+ sourceDataString:str111];//解密
+ 
+ 
+ */
+
 #import <Foundation/Foundation.h>
 
 
@@ -49,27 +68,17 @@
 
 //私钥签名
 - (NSData *)rsaSHA256SignData:(NSData *)plainData;
-//公钥效验 plainData:签名源数据；signature签名后的数据
-- (BOOL)rsaSHA256VerifyData:(NSData *)plainData
-              withSignature:(NSData *)signature;
+- (NSString *)rsaSHA256SignString:(NSString *)string;
+
+//公钥效验 sourceData:签名源数据；signData签名后的数据
+- (BOOL)rsaSHA256VerifySourceData:(NSData *)sourceData
+              withSignData:(NSData *)signData;
+- (BOOL)rsaSHA256VerifySourceString:(NSString *)sourceString
+              withSignString:(NSString *)signString;
 
 
 
 @end
 
-/*
- 用法示例：
- HCRSA *rsa = [HCRSA sharedInstance];
- [rsa loadPublicKeyFromCertificateFile:[[NSBundle mainBundle]
- pathForResource:@"cert" ofType:@"der"]];
- [rsa loadEveryThingFromPKCS12File:[[NSBundle mainBundle]
- pathForResource:@"pkcs" ofType:@"p12"] passphrase:@"123456"];
- 
- NSString *str111 = [rsa encryptStringWithKeyType:HCRSATypeDefault
- sourceString:@"qwerty"];//加密
- NSString *str222 = [rsa decryptStringWithKeyType:HCRSATypeDefault
- sourceDataString:str111];//解密
- 
- 
- */
+
 

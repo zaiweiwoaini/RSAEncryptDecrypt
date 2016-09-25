@@ -264,9 +264,16 @@
     //    [self rsaSHA256VerifyData:plainData withSignature:signedHash];
     return signedHash;
 }
+- (NSString *)rsaSHA256SignString:(NSString *)string{
+    NSData *signData = [self rsaSHA256SignData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+    NSString *base64String = [signData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    return base64String;
+}
 #pragma mark - sha256效验
-- (BOOL)rsaSHA256VerifyData:(NSData *)plainData
-              withSignature:(NSData *)signature{
+- (BOOL)rsaSHA256VerifySourceData:(NSData *)sourceData
+                     withSignData:(NSData *)signData{
+    NSData *plainData = sourceData;
+    NSData *signature = signData;
     if (!plainData || !signature) {
         return NO;
     }
@@ -287,7 +294,12 @@
                                       signedHashBytesSize);
     return status == errSecSuccess;
 }
-
+- (BOOL)rsaSHA256VerifySourceString:(NSString *)sourceString
+                     withSignString:(NSString *)signString{
+    NSData *sourceData = [sourceString dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *signData = [[NSData alloc] initWithBase64EncodedString:signString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    return [self rsaSHA256VerifySourceData:sourceData withSignData:signData];
+}
 
 
 #pragma mark - sha1签名
